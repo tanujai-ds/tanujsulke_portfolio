@@ -1,0 +1,70 @@
+/* ── GLOBAL RESET & VARIABLES ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #d6d4ce;
+  --bg-dark: #0e0e0e;
+  --white: #f5f3ef;
+  --black: #111111;
+  --gray: #7a7872;
+  --gray-light: #b0aea8;
+  --accent: #c8ff00;
+  --accent-dark: #a8d800;
+  --card-bg: #1a1a1a;
+  --border: rgba(0,0,0,0.1);
+  --border-dark: rgba(255,255,255,0.08);
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-heading: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --nav-h: 80px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-dark);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* Selection */
+::selection { background: var(--accent); color: var(--black); }
+
+/* Utility */
+.container {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 0 34px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+}
+
+/* Page transition wrapper */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
