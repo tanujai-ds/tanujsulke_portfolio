@@ -1,0 +1,251 @@
+/* ════════════════════════════════════════════════════════
+   GLOBAL DESIGN SYSTEM — "Ink & Volt"
+   Tanuj Sulke — Portfolio v2
+════════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* — surfaces — */
+  --bg: #08090b;
+  --bg-soft: #0c0e11;
+  --surface: #121418;
+  --surface-2: #181b20;
+  --surface-3: #1f232a;
+  --border: rgba(244, 245, 240, 0.09);
+  --border-strong: rgba(244, 245, 240, 0.16);
+  --border-accent: rgba(207, 255, 61, 0.35);
+
+  /* — ink — */
+  --ink: #f5f6f1;
+  --ink-dim: #c7cad2;
+  --muted: #93979f;
+  --muted-2: #62666e;
+  --black: #08090b;
+
+  /* — accents — */
+  --accent: #cfff3d;
+  --accent-2: #9a8bff;
+  --accent-3: #ff6b57;
+  --accent-cyan: #4fd8ff;
+  --accent-pink: #ff5fb4;
+  --accent-ink: #0a0c05;
+  --accent-soft: rgba(207, 255, 61, 0.1);
+  --accent-glow: rgba(207, 255, 61, 0.35);
+
+  /* — radii — */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  /* — shadow — */
+  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.28);
+  --shadow-md: 0 16px 40px rgba(0, 0, 0, 0.34);
+  --shadow-lg: 0 30px 70px rgba(0, 0, 0, 0.42);
+  --shadow-accent: 0 18px 44px rgba(207, 255, 61, 0.16);
+
+  /* — type — */
+  --font-display: 'Space Grotesk', 'DM Sans', sans-serif;
+  --font-heading: 'Space Grotesk', 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* — layout — */
+  --nav-h: 84px;
+  --container-w: 1320px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+p { color: var(--ink-dim); }
+
+a { color: inherit; }
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+/* Selection */
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* Utility */
+.container {
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 26px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+}
+
+.grad-text {
+  background: linear-gradient(100deg, var(--ink) 20%, var(--accent) 55%, var(--accent-cyan) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Page transition wrapper */
+.page-enter { opacity: 0; transform: translateY(20px); }
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+/* Focus visibility for keyboard users */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+img { max-width: 100%; display: block; }
+
+/* ═══════ AURORA / GRADIENT UTILITIES ═══════ */
+.aurora-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  will-change: transform;
+}
+.aurora-bg::before,
+.aurora-bg::after { content: none; }
+
+@keyframes auroraDriftA { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(60px,40px) scale(1.15); } }
+@keyframes auroraDriftB { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-50px,-60px) scale(1.1); } }
+@keyframes auroraDriftC { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-40px) scale(1.08); } }
+
+/* Animated conic-gradient border — wrap a card with .gradient-border, put real content in a child div.gb-inner */
+.gradient-border {
+  position: relative;
+  border-radius: inherit;
+  isolation: isolate;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--gb-angle, 0deg), var(--accent), var(--accent-2), var(--accent-cyan), var(--accent-3), var(--accent));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+  animation: gbRotate 5s linear infinite;
+  z-index: 0;
+}
+.gradient-border:hover::before { opacity: 1; }
+@property --gb-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes gbRotate { to { --gb-angle: 360deg; } }
+
+.shimmer-text {
+  background: linear-gradient(100deg, var(--ink) 30%, var(--accent) 45%, var(--accent-cyan) 55%, var(--ink) 70%);
+  background-size: 260% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmerMove 6s linear infinite;
+}
+@keyframes shimmerMove { to { background-position: -260% center; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob, .gradient-border::before, .shimmer-text { animation: none !important; }
+}
+
+@media (max-width: 768px) {
+  :root { --nav-h: 72px; }
+}
