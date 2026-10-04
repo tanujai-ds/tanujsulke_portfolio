@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tanujsulke-portfolio.vercel.app/sitemap.xml
